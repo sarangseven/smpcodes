@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <h1>Caesar Cipher</h1>
+    
+    <div class="text-container">
+
+       
+    <div class="input-section">
+
+        <h2>Orginal Message</h2>
+        <textarea id="input-text" placeholder="Enter your Text...."></textarea>
+
+    </div>
+
+    <div class="input-section">
+
+        <h2>Output Message</h2>
+        <textarea id="output-text" placeholder="Encrypted and Decrypted Text will appear here...."></textarea>
+
+    </div>
+
+    </div>
+
+    <div>
+        <label for="key">Encryption Key</label>
+        <input type="number" id="key" min="1" max="25" value="3">
+    </div>
+
+    <button onclick="encrypt()">Encrypt</button>
+    <button onclick="decrypt()">Decrypt</button>
+
+<script>
+    /*encryption->*/
+    function encrypt(){
+        const inputText=document.getElementById("input-text").value;
+        const key=parseInt(document.getElementById("key").value);
+        let encryptionText="";
+        for(let i=0; i<inputText.length; i++){
+            const charCode=inputText.charCodeAt(i);
+            if(charCode >=65 && charCode <=90){
+                //encrypt uppercase letters
+                encryptionText +=String.fromCharCode(((charCode -65 +key) %26) +65);
+                        }
+            else if(charCode >=97 && charCode <=122){
+                //encrypt lowercase letters
+                encryptionText +=String.fromCharCode(((charCode -97 +key) %26) +97);
+            }
+            else{
+                //keep non-alphabetic as they are
+                encryptionText +=inputText[i];
+            }
+        }
+        document.getElementById("output-text").value=encryptionText;
+    }
+    /*encryption<-*/
+
+    /*decryption->*/
+    function decrypt(){
+        const inputText=document.getElementById("input-text").value;
+        const key=parseInt(document.getElementById("key").value);
+        let decryptedText="";
+        for(let i=0; i < inputText.length; i++){
+            const charCode=inputText.charCodeAt(i);
+            
+            if(charCode >= 65 && charCode <= 90){
+                //decrypt uppercase letters
+                decryptedText+=String.fromCharCode(((charCode - 65 -key +26) %26) +65);
+                        }
+            else if(charCode >=97 && charCode <=122){
+                //encrypt lowercase letters
+                decryptedText+=String.fromCharCode(((charCode -97 -key +26) %26) +97);
+            }
+            else{
+                //keep non-alphabetic as they are
+                decryptedText +=inputText[i];
+            }
+        }
+        document.getElementById("output-text").value=decryptedText;
+    }
+    /*decryption<-*/
+</script>
+</body>
+</html>
