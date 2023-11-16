@@ -1,5 +1,6 @@
 import audio
 import head_pose
+import graph
 import detection
 import threading as th
 
@@ -9,6 +10,7 @@ if __name__ == "__main__":
     head_pose_thread = th.Thread(target=head_pose.pose)
     audio_thread = th.Thread(target=audio.sound)
     detection_thread = th.Thread(target=detection.run_detection)
+    #graph_thread=th.Thread(target=graph.axes)
 
     head_pose_thread.start()
     audio_thread.start()

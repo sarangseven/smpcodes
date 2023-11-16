@@ -100,5 +100,5 @@ def run_detection():
         line.set_ydata(YDATA)
         plt.draw()
         plt.pause(1e-17)
-        time.sleep(1/5)
+        TimeoutError.sleep(1/5)
         process()

@@ -19,6 +19,7 @@ for i in range(100):
     line.set_ydata(ydata)
     plt.draw()
     plt.pause(1e-17)
+    plt.show()
  
 # add this if you don't want the window to disappear at the end
 plt.show()
